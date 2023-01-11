@@ -11,6 +11,22 @@
   </head>
 
   <body>
+    <header>
+      <% if customer_signed_in? %>
+      <li>
+        <%= link_to  destroy_customer_session_path, method: :delete do %>
+        <i class="fas fa-sign-out-alt"></i>Log out
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "新規登録", new_customer_registration_path %>
+      </li>
+      <li>
+        <%= link_to "ログイン", new_customer_session_path %>
+      </li>
+    <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
