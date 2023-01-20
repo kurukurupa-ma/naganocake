@@ -3,16 +3,33 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  def after_sugn_up_path_for(resource)
+    root_path
+  end
+  
+  def after_update__path_for(resource)
+    custmer_path(current_user)
+  end
+  
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+  
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+     super
+  end
 
   # POST /resource
-  # def create
+  def create
+     @customer =Customer.new(customer_params)
+     if @user.save
+      redirect_to @customer, notice: 'User was successfully created.'
+     else
+      render :new
   #   super
-  # end
+     end
+  end
 
   # GET /resource/edit
   # def edit
