@@ -1,0 +1,63 @@
+<div class="container">
+     <div class="row">
+          <div class="col-4">
+              <h4><%= @customer.name %>さんの会員情報編集</h4>
+          </div>
+     </div>
+     <div class="edit_customer_form">
+          <div class="row">
+            <div class="col-9">
+                <%= form_for @customer, :url => {cintroller: "admin/customers", action: "update"} do |f| %>
+                   <table class="edit_customer">
+                       <tr>
+                           <th>会員ID</th>
+                           <td><%= @customer.id %></td>
+                       </tr>
+                       <tr>
+                           <th>氏名</th>
+                           <td>
+                              <%= f.text_field :first_name %>
+                              <%= f.text_field :last_name %>
+                           </td>
+                       </tr>
+                       <tr>
+                           <th>フリガナ</th>
+                           <td>
+                              <%= f.text_field :first_name_kana %>
+                              <%= f.text_field :last_name_kana %>
+                           </td>
+                       </tr>
+                       <tr>
+                           <th>郵便番号</th>
+                           <td><%= f.number_field :postal_code %></td>
+                       </tr>
+                       <tr>
+                           <th>住所</th>
+                           <td><%= f.text_field :address %></td>
+                       </tr>
+                       <tr>
+                           <th>電話番号</th>
+                           <td><%= f.phone_field :telephone_number %></td>
+                       </tr>
+                       <tr>
+                           <th>メールアドレス</th>
+                           <td><%= f.email_field :email %></td>
+                       </tr>
+                       <tr>
+                           <th>会員ステータス</th>
+                           <td>
+                              <%= f.radio_button :is_deleted, :false %>
+                              <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+                              <%= f.radio_button :is_deleted, :true %>
+                              <%= f.label :is_deleted, "退会済み", {value: :true, style: "display: inline-block;"} %>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td><%= f.submit "変更を保存", class: "btn btn0info" %></td>
+                       </tr>
+                   </table>
+                  <% end %>
+            </div>
+          </div>
+     </div>
+</div>
