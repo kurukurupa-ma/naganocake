@@ -15,9 +15,9 @@ class Customer < ApplicationRecord
   validates :last_name, presence: true
   validates :first_name_kana, presence: true
   validates :last_name_kana, presence: true
-  validates :postal_code, presence: true
+  validates :postal_code, presence: true, length: {maximum: 7, minimum: 7}, numbericality: true
   validates :address, presence: true
-  validates :telephone_number, presence: true
+  validates :telephone_number, presence: true, length: {maximum: 11, minimum: 11}, numbericality: true
   
   def name
     first_name + last_name
