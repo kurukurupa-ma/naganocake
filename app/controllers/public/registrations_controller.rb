@@ -21,15 +21,15 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  def create
-     @customer =Customer.new(customer_params)
-     if @user.save
-      redirect_to @customer, notice: 'User was successfully created.'
-     else
-      render :new
+  #def create
+     #@customer =Customer.new(customer_params)
+     #if @customer.save
+      #redirect_to @customer, notice: 'User was successfully created.'
+     #else
+      #render :new
   #   super
-     end
-  end
+     #end
+  #end
 
   # GET /resource/edit
   # def edit

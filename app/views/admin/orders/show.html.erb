@@ -47,8 +47,27 @@
           <% @order_items.each do |order_item| %>
             <tr>
                 <td><%= order_item.item.name %></td>
-                <td><%= </td>
-            </tr>  
+                <td><%= include_tax(order_item.item.price) %></td>
+                <td><%= order_item.count %></td>
+                <td><%= include_tax(order_item.item.price) * order_item.count %></td>
+                <td>
+                    <%= form_with model :order_item, url: admin_order_item_path(prder_item) do |f| %>
+                    <%= f.select :making_status, OrderItem.making_statuses.keys.to_a, {}, {include_blank: order_item.making_status} %>
+                    <%= f.submit '更新', class: 'btn btn-primary' %>
+                    <% end %>
+                </td>
+            </tr>
+          <% end %>
          </table>
+     </div>
+     <div class="col-4">
+        <dl class="dl-horizontal orders">
+           <dt>商品会計</dt>
+              <dd><%= @order.payment + @order.shipping_cost %></dd>
+           <dt>送料</dt>
+              <dd><%= @order.shipping_cost %>円</dd>
+           <dt>請求合計金額</dt>
+              <dd><%= @order.total_payment %>円</dd>
+        </dl>
      </div>
 </div>
