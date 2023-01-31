@@ -26,6 +26,13 @@ class Admin::CustomersController < ApplicationController
     end
   end 
   
+  def unsubscribe
+    @customer = Customer.find(params[:id])
+    if @customer.id != current_customer.id
+      redirect_to root_path
+    end
+ end      
+  
   private
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :email, :postal_code, :address)

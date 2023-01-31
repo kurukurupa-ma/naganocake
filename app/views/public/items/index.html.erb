@@ -1,0 +1,28 @@
+<div class="box list-group">
+    <h4>ジャンル検索</h4>
+      <% genres = Genre.where(is_valid: true) %>
+      <% genres.each do |genre| %>
+           <%= link_to customer_items_path(genre_id: genre.id),class: "list-group-item" do %>
+           <%= genre.name %><span class="badge"><%= Item.where(genre_id: genre.id).count %></span>
+           <% end %>
+      <% end %>
+</div>
+<div class="container">
+    <div class="row">
+       <div class="col-3">
+         <h1>商品一覧</h1>
+       </div>
+       <div class="items">
+          <% index_items.each do |i| %>
+            <%= link_to customer_item_path(i) do %>
+            <dl>
+              <dt>商品名</dt>
+               <dd><%= i.name %></dd>
+              <dt>価格</dt>
+               <dd><%= include_tax(i.price) %></dd>
+            </dl>
+       </div>
+       <% end %>
+      <% end %>
+    </div>
+</div>

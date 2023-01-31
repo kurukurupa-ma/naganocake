@@ -1,35 +1,35 @@
 <div class="container">
-    <div class="row">
-       <div class="col-3">
-         <h4>商品一覧</h4>
-       </div>
-       <div class="col-offset-1 col-10">
-             <table class="table">
-               <tr class="activ" style="font-weight: bold">
-                 <td>商品ID</td>
-                 <td>商品名</td>
-                 <td>税抜価格</td>
-                 <td>ジャンル</td>
-                 <td>ステータス</td>
-                </tr>
-               <% @items.each do |i| %>
-                <tr>
-                  <td><%= i.id %></td>
-                  <td><%= link_to i.name, admin_item_path(i) %></td>
-                  <td><%= i.price %>円</td>
-                  <td><%= genre.name %></td>
-                  <td><% if i.is_selling == true %>
-                        <p>販売中</p>
-                      <% else %>
-                        <p>販売停止中</p>
+     <div class="row">
+            <div class="col-3">
+                <h4>商品一覧</h4>
+            </div>
+            <div class="col-offset-1 col-10">
+                <table class="table">
+                    <tr class="activ" style="font-weight: bold">
+                        <td>商品ID</td>
+                        <td>商品名</td>
+                        <td>税抜価格</td>
+                        <td>ジャンル</td>
+                        <td>ステータス</td>
+                    </tr><br>
+                    <% @items.each do |i| %>
+                      <tr>
+                         <td><%= i.id %></td>
+                         <td><%= link_to i.name, admin_item_path(i) %></td>
+                         <td><%= i.price %>円</td>
+                         <td><%= genre.name %></td>
+                         <td><% if i.is_selling == true %>
+                            <p>販売中</p>
+                             <% else %>
+                                <p>販売停止中</p>
+                             <% end %>
+                         </td>
+                      </tr>
                       <% end %>
-                    </td>
-                </tr>
-            <% end %>
-         </table>
-       </div>
-    </div>
-    <div class="col-12">
-       <%= paginate @items %>
-    </div>   
+                </table>
+            </div>
+        </div>
+        <div class="col-12">
+            <%= paginate @items %>
+        </div>
 </div>

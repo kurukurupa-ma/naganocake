@@ -1,7 +1,7 @@
-class CartItem < 
-  belongs_to :customer
+class CartItem < ApplicationRecord
+  belongs_to :customer_params
   belongs_to :item_image
   
-  validates :count, presence
+  validate :count, presence
   
 end
