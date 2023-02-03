@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+       <div class="col-4">
+          <h4>注文情報入力</h4>
+       </div>
+    </div>
+      <%= form_with(model: @order,url:orders_confirm_path, local: true) do |f| %>
+      <div class="row">
+          <div class="col-4">
+             <div class="col-5"><h5>支払方法</h5></div>
+             <div class="col-offset-1 col-8">
+                <%= f.radio_button :payment_method, :クレジットカード, class:"pull-left" %>
+                <%= f.label :payment_method, :クレジットカード, {class:"pull-left", style: "padding-left: 5px"} %>
+             </div>
+             <div class="col-offset-1 col-8">
+                <%= f.radio_button :payment_method, :銀行振込, class:"pull-left" %>
+                <%= f.label :payment_method, :銀行振込, {class:"pull-left", style: "padding-left: 5px"} %>
+             </div>
+             <div class="col-5"><h5>お届け先</h5></div>
+             <div class="col-offset-1 col-8">
+                 <%= f.radio_button :address,[current_customer.postal_code, "", current_customer.address, "", current_customer.name], class:"pull-left" %>
+                 <%= f.label :address, "ご自身の住所", {class:"pull-left", style: "padding-left: 5px"} %>
+             </div>
+             <div class="col-12">
+                 <p>〒<%= current_customer.postal_code %><%= current_customer.address %><%= current_customer.name %></p>
+             </div>
+             <div class="col-offset-1 col-8">
+               <%= f.radio_button :address, [:email], class:"pull-reft", style: "padding-left: 5px"} %>
+               <%= f.label :address, "登録済住所から選択", {class:"pull-left", style: "padding-left: 5px;"} %>
+          </div>
+          <div class="col-offset-1 col-10">
+               <%= f.radio_button :address, [:new], class:"pull-left" %>
+               <%= f.label :address, "新しいお届け先", {class: "pull-left", style: "padding-left: 5px;"} %> 
+          </div>
+      </div>
+</div>

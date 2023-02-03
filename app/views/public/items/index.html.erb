@@ -3,7 +3,7 @@
       <% genres = Genre.where(is_valid: true) %>
       <% genres.each do |genre| %>
            <%= link_to customer_items_path(genre_id: genre.id),class: "list-group-item" do %>
-           <%= genre.name %><span class="badge"><%= Item.where(genre_id: genre.id).count %></span>
+           <%= genre.name %><span class="badge"><%= Item.where(genre_id: genre.id).amount %></span>
            <% end %>
       <% end %>
 </div>

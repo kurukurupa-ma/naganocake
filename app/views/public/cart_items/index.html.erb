@@ -32,13 +32,13 @@
                <td><%= form_with model:cart, url:cart_item_path(cart), method: :patch do |f| %>
                    <%= f.hidden_field :item_id, value: cart.item.id %>
                    <%= f.hidden_field :customer_id, value: current_customer.id %>
-                   <%= f.hidden_field :count, value:cart.count %>
+                   <%= f.hidden_field :amount, value:cart.amount %>
                    <%= f.submit "変更", class: 'btn btn-primary' %>
                    <% end %>
                </td>
-               <td style="line-height: 30px;"><%= include_tax(cart.item.price) * cart.count %>円</td>
+               <td style="line-height: 30px;"><%= include_tax(cart.item.price) * cart.amount %>円</td>
                <td style="line-height: 30px;"><%= link_to '削除する',cart_item_path(cart), method: :delete, class: 'btn btn-danger' %></td>
-               <% totl += include_tax(cart.item.price) * cart.count %>
+               <% total += include_tax(cart.item.price) * cart.amount %>
             </tr>
             <% end %>
           </tbody>
