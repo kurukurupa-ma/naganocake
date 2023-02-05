@@ -1,0 +1,72 @@
+<div class="container">
+     <div class="row">
+         <div class="col-4">
+            <%= form_with model: @order, url: orders_confirm_path do |f| %>
+            <h4>注文情報確認</h4>
+         </div>
+     </div>
+     <div class="col-8">
+         <table class="table yable-bordered">
+            <tr class="active">
+               <th>商品名</th>
+               <th>単価（税込）</th>
+               <th>数量</th>
+               <th>小計</th>
+            </tr>
+            <% sum = 0 %>
+            <% @cart_item.each do |cart_item| %>
+            <tr>
+                <td style ="line-height: 50px;"><%= attachment_image_tag cart.item, :item_image, style: "width: 50px; float:left; margin-right: 10px;" %><%= cart.item.name %></td>
+                <td style ="line-height: 50px;"><%= (cart_item.item.with_tax_price) %>円</td>
+                <td style ="line-height: 50px;"><%= cart.amount %></td>
+                <td style ="line-height: 50px;"><%= cart_item.item.subtotle %>円</td>
+                <% price = include_tax(cart.item.price) * cart.amount %>
+                <% sum += cart_item.subtotle %>
+            </tr>
+            <% end %>
+         </table>
+     </div>
+     <div class="col-4">
+         <table class="table table-bordered">
+              <tr>
+                 <th class="active" style ="line-height: 30px;">合計金額</th>
+                 <td style ="line-height: 30px;"><%= sum %>円</td>
+              </tr>
+              <tr>
+                <th class="active" style="line-height: 30px;">送料</th>
+                <td style ="line-height: 30px"><%= @shipping_cost %>円</td>
+              </tr>
+              <% totle_payment = sum + @shipping_cost %>
+              <tr>
+                 <th class="active" style="line-height: 30px;">請求金額</th>
+                 <td style="line-height: 30px"><%= totle_payment %>円</td>
+              </tr>
+         </table>
+     </div>
+       <div class="col-12">
+         <h4 class="pull-left">支払方法</h4>
+       </div>
+       <div class="col-12">
+         <p class="pull-left"><%= params[:order][:payment_method] %></p>
+       </div>
+       <div class="col-12">
+         <h4 class="pull-left">お届け先</h4>
+       </div>
+       <% address = '' %>
+       <div class="col-12">
+         <p class="pull-left">
+            <% if params[:order][:address] == "email" %>
+                <% address = params[:order][:address] %>
+            <% elsif params[:order][:address] =="new" %>
+                <%= params[:order][:newpostal_code] + "" + params[:order][:newaddress] %><%= params[:order][:newname] %>
+                <% address = params[:order][:newpostal_code]+ ""+ params[:order][:newaddress] + "" + params[:order][:newname] %>
+            <% else %>
+                <%= params[:order][:address] %>
+                <% address = params[:order][:address] %>
+            <% end %>    
+         </p>
+       </div>
+         <%= f.hidden_field :customer_id, value: current_customer.id %>
+         <%= f.hidden_field :shipping_cost, value: @shipping_cost %>
+         <%= f.hidden_field :
+</div>

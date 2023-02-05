@@ -4,4 +4,8 @@ class CartItem < ApplicationRecord
   
   validate :amount, presence
   
+  def subtotle
+    item.with_tax_price * amount
+  end
+  
 end

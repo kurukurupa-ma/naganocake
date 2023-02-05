@@ -1,12 +1,16 @@
 class Public::OrdersController < ApplicationController
   
   def new
+    @cart_items = CartItem.where(customer_id: [current_customer.id])
+    @order = Order.new
   end
   
   def comfirm
+    
   end
   
   def complete
+    
   end
   
   def create
@@ -18,4 +22,8 @@ class Public::OrdersController < ApplicationController
   def show
   end
   
+  private
+  def order_params
+    params.require(:order).permit(:customer_id, :postal_code, :address, :payment_method, :order_status, :shipping_cost, :totle_payment)
+  end
 end

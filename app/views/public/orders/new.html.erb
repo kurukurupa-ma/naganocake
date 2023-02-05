@@ -25,12 +25,26 @@
                  <p>〒<%= current_customer.postal_code %><%= current_customer.address %><%= current_customer.name %></p>
              </div>
              <div class="col-offset-1 col-8">
-               <%= f.radio_button :address, [:email], class:"pull-reft", style: "padding-left: 5px"} %>
+               <%= f.radio_button :address, [:email], class:"pull-reft" %>
                <%= f.label :address, "登録済住所から選択", {class:"pull-left", style: "padding-left: 5px;"} %>
           </div>
           <div class="col-offset-1 col-10">
                <%= f.radio_button :address, [:new], class:"pull-left" %>
                <%= f.label :address, "新しいお届け先", {class: "pull-left", style: "padding-left: 5px;"} %> 
           </div>
+            <div class="col-offset-1 col-3"><%= f.label :郵便番号(ハイフンなし） %></div>
+            <div class="col-offset-1 col-9"><%= f.text_field :newpostalcode %></div>
+            <div class="col-offset-1 col-3"><%= f.label :住所 %></div>
+            <div class="col-offset-1 col-9"><%= f.text_field :newaddress %></div>
+            <div class="col-offset-1 col-3"><%= f.label :宛名 %></div>
+            <div class="col-offset-1 col-9"><%= f.text_field :newname %></div>
+          <%= hidden_field_tag :page, "new" %><br>  
+       <% end %>     
       </div>
+            <div class="row">
+                <div class="col-7">
+                   <%= f.submit "確認画面へ進む", class: "btn btn-info" %>
+                </div>
+            </div>
+   <% end %>
 </div>
