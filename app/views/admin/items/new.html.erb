@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-9">
+        <div class="col-9 col-offset-2">
             <%= form_with model: item,url:url,local:true do |f| %>
               <div class="items form-controll">
                   <div class="col-4">
@@ -21,18 +21,23 @@
                   <div class="col-8">
                       <div class="row">
                           <%= f.label :商品名   %>
+                          <%= f.text_field :name,placeholder: "商品名" %>
                       </div>
                       <div class="row">
                           <%= f.label :商品説明   %>
+                          <%= f.text_area :description, placeholder: "説明文" %>
                       </div>
                       <div class="row">
                           <%= f.label :ジャンル   %>
+                          <%= f.collection_select :genre_id, Genre.all, :id, :name %>
                       </div>
                       <div class="row">
                           <%= f.label :税抜価格   %>
+                          <%= f.text_field :price, placeholder: "数字" %>
                       </div>
                       <div class="row">
                           <%= f.label :販売ステータス   %>
+                          <%= f.select :is_active, [["販売中", true],["売り切れ", false]], include_blank: "選択" %>
                       </div>
                   </div>
               </div>

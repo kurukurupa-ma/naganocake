@@ -1,4 +1,5 @@
 class Admin::CustomersController < ApplicationController
+  
   def index
     if params[:is_deleted]
       customer = Customer.where(is_deleted: false)
@@ -31,7 +32,7 @@ class Admin::CustomersController < ApplicationController
     if @customer.id != current_customer.id
       redirect_to root_path
     end
- end      
+  end      
   
   private
   def customer_params

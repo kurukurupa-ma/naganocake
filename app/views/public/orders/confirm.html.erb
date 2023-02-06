@@ -68,5 +68,9 @@
        </div>
          <%= f.hidden_field :customer_id, value: current_customer.id %>
          <%= f.hidden_field :shipping_cost, value: @shipping_cost %>
-         <%= f.hidden_field :
+         <%= f.hidden_field :totle_payment, value: @totle_payment %>
+         <%= f.hidden_field :address, value: @address %>
+         <%= f.hidden_field :payment_method, value: params[:order][:payment_method] %>
+         <%= f.submit '注文を確定する', class: 'btn btn-success btn lg' %>
+     <% end %
 </div>

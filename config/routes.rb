@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     
     resources :genres,only: [:index, :create, :edit, :update]
     
-    resources :customers,only: [:index, :show, :edit, :update]
+    resources :customers,only: [:index, :show, :edit, :update, :destroy]
     
     resources :orders,only: [:show, :update]
     
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
     resources :items,only: [:index, :show]
     
+    delete 'customers/sign_out'=> 'customers#destroy'
     get 'customers/my_page' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
