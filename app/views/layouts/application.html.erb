@@ -15,7 +15,7 @@
       <% if customer_signed_in? %>
          <div class="welcome">ようこそ、<strong><%= current_customer.name %></strong>さん！</div>
          <div class="customer-header">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav nav-pills nav-justifieed">
                 <li><%= link_to "マイページ", customers_my_page_path, class: "nav-link text-right" %></li>
                 <li><%= link_to "商品一覧", items_path, class: "nav-link text-right" %></li>
                 <li><%= link_to "カート", cart_items_path, class: "nav-link text-right" %></li>
