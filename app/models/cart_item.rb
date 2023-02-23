@@ -1,6 +1,6 @@
 class CartItem < ApplicationRecord
-  belongs_to :customer_params
-  belongs_to :item_image
+  belongs_to :item
+  belongs_to :customer
   
   validate :amount, presence
   

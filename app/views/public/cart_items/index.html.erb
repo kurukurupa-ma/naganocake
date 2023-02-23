@@ -25,22 +25,22 @@
           </thead>
           <% total = 0 %>
           <% @cart_items.each do |cart_item| %>
-          <tbody>
-            <tr>
-               <td style="line-height: 30px;"><%= attachment_image_tag cart.item, :item_image, style: "width: 50px; height: 30px;", class: "pull-left" %><%= cart.item.name %></td>
-               <td style="line-height: 30px;"><%= (cart_item.item.with_tax_price %></td>
-               <td><%= form_with model:cart, url:cart_item_path(cart), method: :patch do |f| %>
-                   <%= f.hidden_field :item_id, value: cart.item.id %>
-                   <%= f.hidden_field :customer_id, value: current_customer.id %>
-                   <%= f.hidden_field :amount, value:cart.amount %>
-                   <%= f.submit "変更", class: 'btn btn-primary' %>
-                   <% end %>
-               </td>
-               <td style="line-height: 30px;"><%=cart_item.item.subtotle %>円</td>
-               <td style="line-height: 30px;"><%= link_to '削除する',cart_item_path(cart), method: :delete, class: 'btn btn-danger' %></td>
-               <% 合計金額 += cart_item.subtotle %>
-            </tr>
-            <% end %>
+              <tbody>
+                <tr>
+                   <td style="line-height: 30px;"><%= image_tag cart_item.item.item_image, style: "width: 50px; height: 30px;", class: "pull-left" %><%= cart_item.item.name %></td>
+                   <td style="line-height: 30px;"><%= cart_item.item.with_tax_price %></td>
+                   <td><%= form_with model:cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+                       <%= f.hidden_field :item_id, value: cart_item.id %>
+                       <%= f.hidden_field :customer_id, value: current_customer.id %>
+                       <%= f.hidden_field :amount, value: cart_item.amount %>
+                       <%= f.submit "変更", class: 'btn btn-primary' %>
+                       <% end %>
+                   </td>
+                   <td style="line-height: 30px;"><%=cart_item.subtotle %>円</td>
+                   <td style="line-height: 30px;"><%= link_to '削除する',cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
+                   <% total += cart_item.subtotle %>
+                </tr>
+          <% end %>
           </tbody>
        </table>
     </div>
@@ -52,7 +52,7 @@
     <div class="col-3 col-offset-4">
         <table class="table table-bordered">
           <tr>
-            <th class="active">合計金額</th><td><%= totle %>円</td>
+            <th class="active">合計金額</th><td><%= total %>円</td>
           </tr>
         </table>
     </div>

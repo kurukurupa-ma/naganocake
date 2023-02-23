@@ -5,24 +5,22 @@ class Public::ItemsController < ApplicationController
       @items = Item.where(genre_id: params[:genre_id],is_active: true)
       @index_items = @items.order(:updated_at).page(params[:page])
       @genre = Genre.find(params[:genre_id])
-      elsif params[:name].present?
+    elsif params[:name].present?
         @items = Item.where("name LIKE ?", "#{params[:name]} %")
         @index_items = @items.prder(:updated_at).page(params[:page])
-      elsif
-        @items = Item.where(is_active: true)
+    else
+        @items = Item.where(is_active:true)
         @index_items = @items.order(:updated_at).page(params[:page])
-      end
-      if customer_signed_in?
-        @cart_items = CartItems.where(customer_id:[current_customer.id])
-      end
+    end
+   
+    @genres = Genre.all
+    
   end
   
   def show
     @item = Item.find(params[:id])
-    @cart_item = CartItems.new
-    if customer_signed_in?
-      @cart_items = CartItems.where(customer_id:[current_customer.id])
-    end
+    @cart_item = CartItem.new
+    
   end
   
- end
+end

@@ -6,18 +6,18 @@
      </div>
      <div class="row">
          <div class="col-offset-1 col-4">
-             <%= attchment_image_tag @item, :item_image,style: "width:300px; height:200px" %>
+             <%= image_tag @item.get_item_image(100,100) %>
          </div>
          <div class="col-6">
              <dl class="dl-horezontal">
                  <dt>商品名</dt><dd><%= @item.name %></dd><br>
                  <dt>商品説明</dt><dd><%= @item.introduction %></dd><br>
-                 <dt>税込み価格（税抜価格）</dt><dd><%= include_tax(@item.price) %>(<%= @item.price %>)円</dd>br>
-                 <dt>販売ステータス</dt><% if @item.is_activ ==true %>
+                 <dt>税込み価格（税抜価格）</dt><dd><%=(@item.with_tax_price) %>(<%= @item.price %>)円</dd><br>
+                 <dt>販売ステータス</dt><% if @item.is_active ==true %>
                                              <dd>販売中</dd>
                                         <% else %>
                                              <dd>販売停止中</dd>
-                                        <% end %><br>
+                                        <% end %>
              </dl>
          </div>
      </div>

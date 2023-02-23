@@ -17,8 +17,8 @@
                          <td><%= i.id %></td>
                          <td><%= link_to i.name, admin_item_path(i) %></td>
                          <td><%= i.price %>円</td>
-                         <td><%= genre.name %></td>
-                         <td><% if i.is_selling == true %>
+                         <td><%= @genre.name %></td>
+                         <td><% if i.is_active == true %>
                             <p>販売中</p>
                              <% else %>
                                 <p>販売停止中</p>
