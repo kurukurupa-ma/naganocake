@@ -32,14 +32,14 @@
                <%= f.radio_button :address, [:new], class:"pull-left" %>
                <%= f.label :address, "新しいお届け先", {class: "pull-left", style: "padding-left: 5px;"} %> 
           </div>
-            <div class="col-offset-1 col-3"><%= f.label :郵便番号(ハイフンなし） %></div>
+            <div class="col-offset-1 col-3"><%= f.label :郵便番号 %></div>
             <div class="col-offset-1 col-9"><%= f.text_field :newpostalcode %></div>
             <div class="col-offset-1 col-3"><%= f.label :住所 %></div>
             <div class="col-offset-1 col-9"><%= f.text_field :newaddress %></div>
             <div class="col-offset-1 col-3"><%= f.label :宛名 %></div>
             <div class="col-offset-1 col-9"><%= f.text_field :newname %></div>
           <%= hidden_field_tag :page, "new" %><br>  
-       <% end %>     
+           
       </div>
             <div class="row">
                 <div class="col-7">
