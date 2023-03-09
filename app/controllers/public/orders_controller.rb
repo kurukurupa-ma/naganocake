@@ -6,6 +6,9 @@ class Public::OrdersController < ApplicationController
   end
   
   def comfirm
+    @cart_item = CartItem.where(customer_id:[current_customer/id])
+    @order = Order.new
+    
     
   end
   
