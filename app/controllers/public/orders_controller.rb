@@ -30,7 +30,13 @@ class Public::OrdersController < ApplicationController
         pcart_items.each do |cart_item|
           OrderItem.create!(order_id: @order.id, amount:cart_item.amount, item_id:cart_item.item_id, price:cart_item.item.price)
         end
-        
+        @cart_items.destroy_all
+        redirect_to '/thanks'
+      else
+        flash[:notice] = "項目に不備があります"
+        redirect_to '/orders/new'
+      end
+    end
   end
   
   def index
