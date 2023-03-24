@@ -46,6 +46,9 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     if @order.customer_id != current_customer.id
+      redirect_to root_path
+    end
+    @order_items = OrderItem.where(order_id: @order.id)
   end
   
   private
