@@ -7,10 +7,10 @@ class Admin::OrderDetailsController < ApplicationController
    if params[:order_item][:making_status] == '製作中'
       order.update!(status: 2) 
    elsif params[:order_item][:making_status] =="製作完了"
-     if order_items.all?{|orderitem| orderitem.making_status =="製作完了"
+   if order_items.all?{|orderitem| orderitem.making_status =="製作完了"}
           order.update!(status: 3)
-    end
-    end
+   end
+   end
       redirect_to admin_order_path(order)        
   end
   
